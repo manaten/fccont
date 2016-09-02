@@ -3,7 +3,7 @@ import 'isomorphic-fetch';
 
 import FcController from './FcController';
 
-const sock = new WebSocket('ws://localhost:9999');
+// const sock = new WebSocket('ws://localhost:9999');
 
 export default class App extends Component {
   constructor() {
@@ -34,7 +34,8 @@ export default class App extends Component {
     const index = stateMap.indexOf(type);
     this.keyStates[index] = value;
     console.log(type, this.keyStates.join(''));
-    sock.send(JSON.stringify({Msg: this.keyStates.join('')}));
+    // sock.send(JSON.stringify({Msg: this.keyStates.join('')}));
+    fetch('http://localhost:9999', { method: 'POST', body: JSON.stringify({Msg: this.keyStates.join('')}) });
   }
 
   render() {
